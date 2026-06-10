@@ -38,11 +38,11 @@
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
         <script src="data/limite_0.js"></script>
-        <script src="data/rl_proposta_2025_1.js"></script>
+        <script src="data/rl_proporsta_915_ha_1.js"></script>
         <script src="data/pa_contestado_2000_2.js"></script>
         <script src="data/hidrografia_3.js"></script>
         <script src="data/curvas_nivel_10m_alos_palsar_4.js"></script>
-        <script src="data/area_livre_incra_2024_5.js"></script>
+        <script src="data/area_livre_INCRA_2024_771_ha_5.js"></script>
         <script src="data/levantamento_de_campo_6.js"></script>
         <script>
         var highlightLayer;
@@ -62,7 +62,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[-25.66379454092475,-49.82085730234368],[-25.5701196806006,-49.65074441724213]]);
+        }).fitBounds([[-25.653836256124507,-49.75570749151662],[-25.600479966598197,-49.65882663273908]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -205,7 +205,7 @@
         });
         bounds_group.addLayer(layer_limite_0);
         map.addLayer(layer_limite_0);
-        function pop_rl_proposta_2025_1(feature, layer) {
+        function pop_rl_proporsta_915_ha_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -240,9 +240,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_rl_proposta_2025_1_0() {
+        function style_rl_proporsta_915_ha_1_0() {
             return {
-                pane: 'pane_rl_proposta_2025_1',
+                pane: 'pane_rl_proporsta_915_ha_1',
                 opacity: 1,
                 color: 'rgba(35,96,35,1.0)',
                 dashArray: '',
@@ -255,20 +255,20 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_rl_proposta_2025_1');
-        map.getPane('pane_rl_proposta_2025_1').style.zIndex = 401;
-        map.getPane('pane_rl_proposta_2025_1').style['mix-blend-mode'] = 'normal';
-        var layer_rl_proposta_2025_1 = new L.geoJson(json_rl_proposta_2025_1, {
+        map.createPane('pane_rl_proporsta_915_ha_1');
+        map.getPane('pane_rl_proporsta_915_ha_1').style.zIndex = 401;
+        map.getPane('pane_rl_proporsta_915_ha_1').style['mix-blend-mode'] = 'normal';
+        var layer_rl_proporsta_915_ha_1 = new L.geoJson(json_rl_proporsta_915_ha_1, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_rl_proposta_2025_1',
-            layerName: 'layer_rl_proposta_2025_1',
-            pane: 'pane_rl_proposta_2025_1',
-            onEachFeature: pop_rl_proposta_2025_1,
-            style: style_rl_proposta_2025_1_0,
+            dataVar: 'json_rl_proporsta_915_ha_1',
+            layerName: 'layer_rl_proporsta_915_ha_1',
+            pane: 'pane_rl_proporsta_915_ha_1',
+            onEachFeature: pop_rl_proporsta_915_ha_1,
+            style: style_rl_proporsta_915_ha_1_0,
         });
-        bounds_group.addLayer(layer_rl_proposta_2025_1);
-        map.addLayer(layer_rl_proposta_2025_1);
+        bounds_group.addLayer(layer_rl_proporsta_915_ha_1);
+        map.addLayer(layer_rl_proporsta_915_ha_1);
         function pop_pa_contestado_2000_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -452,7 +452,7 @@
         });
         bounds_group.addLayer(layer_curvas_nivel_10m_alos_palsar_4);
         map.addLayer(layer_curvas_nivel_10m_alos_palsar_4);
-        function pop_area_livre_incra_2024_5(feature, layer) {
+        function pop_area_livre_INCRA_2024_771_ha_5(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -479,11 +479,11 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_area_livre_incra_2024_5_0(feature) {
+        function style_area_livre_INCRA_2024_771_ha_5_0(feature) {
             switch(String(feature.properties['aproveitar'])) {
                 case 'aproveitável':
                     return {
-                pane: 'pane_area_livre_incra_2024_5',
+                pane: 'pane_area_livre_INCRA_2024_771_ha_5',
                 opacity: 1,
                 color: 'rgba(51,220,31,1.0)',
                 dashArray: '6.0,3.0',
@@ -498,7 +498,7 @@
                     break;
                 case 'não aproveitável':
                     return {
-                pane: 'pane_area_livre_incra_2024_5',
+                pane: 'pane_area_livre_INCRA_2024_771_ha_5',
                 opacity: 1,
                 color: 'rgba(234,33,58,1.0)',
                 dashArray: '6.0,3.0',
@@ -513,7 +513,7 @@
                     break;
                 case 'dúvida':
                     return {
-                pane: 'pane_area_livre_incra_2024_5',
+                pane: 'pane_area_livre_INCRA_2024_771_ha_5',
                 opacity: 1,
                 color: 'rgba(244,131,53,1.0)',
                 dashArray: '6.0,3.0',
@@ -528,20 +528,20 @@
                     break;
             }
         }
-        map.createPane('pane_area_livre_incra_2024_5');
-        map.getPane('pane_area_livre_incra_2024_5').style.zIndex = 405;
-        map.getPane('pane_area_livre_incra_2024_5').style['mix-blend-mode'] = 'normal';
-        var layer_area_livre_incra_2024_5 = new L.geoJson(json_area_livre_incra_2024_5, {
+        map.createPane('pane_area_livre_INCRA_2024_771_ha_5');
+        map.getPane('pane_area_livre_INCRA_2024_771_ha_5').style.zIndex = 405;
+        map.getPane('pane_area_livre_INCRA_2024_771_ha_5').style['mix-blend-mode'] = 'normal';
+        var layer_area_livre_INCRA_2024_771_ha_5 = new L.geoJson(json_area_livre_INCRA_2024_771_ha_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_area_livre_incra_2024_5',
-            layerName: 'layer_area_livre_incra_2024_5',
-            pane: 'pane_area_livre_incra_2024_5',
-            onEachFeature: pop_area_livre_incra_2024_5,
-            style: style_area_livre_incra_2024_5_0,
+            dataVar: 'json_area_livre_INCRA_2024_771_ha_5',
+            layerName: 'layer_area_livre_INCRA_2024_771_ha_5',
+            pane: 'pane_area_livre_INCRA_2024_771_ha_5',
+            onEachFeature: pop_area_livre_INCRA_2024_771_ha_5,
+            style: style_area_livre_INCRA_2024_771_ha_5_0,
         });
-        bounds_group.addLayer(layer_area_livre_incra_2024_5);
-        map.addLayer(layer_area_livre_incra_2024_5);
+        bounds_group.addLayer(layer_area_livre_INCRA_2024_771_ha_5);
+        map.addLayer(layer_area_livre_INCRA_2024_771_ha_5);
         function pop_levantamento_de_campo_6(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -605,11 +605,11 @@
         map.addLayer(layer_levantamento_de_campo_6);
         var overlaysTree = [
             {label: '<img src="legend/levantamento_de_campo_6.png" /> levantamento_de_campo', layer: layer_levantamento_de_campo_6},
-            {label: 'area_livre_incra_2024<br /><table><tr><td style="text-align: center;"><img src="legend/area_livre_incra_2024_5_aproveitável0.png" /></td><td>aproveitável</td></tr><tr><td style="text-align: center;"><img src="legend/area_livre_incra_2024_5_nãoaproveitável1.png" /></td><td>não aproveitável</td></tr><tr><td style="text-align: center;"><img src="legend/area_livre_incra_2024_5_dúvida2.png" /></td><td>dúvida</td></tr></table>', layer: layer_area_livre_incra_2024_5},
+            {label: 'area_livre_INCRA_2024_771_ha<br /><table><tr><td style="text-align: center;"><img src="legend/area_livre_INCRA_2024_771_ha_5_aproveitável622ha0.png" /></td><td>aproveitável_622_ha</td></tr><tr><td style="text-align: center;"><img src="legend/area_livre_INCRA_2024_771_ha_5_nãoaproveitável102ha1.png" /></td><td>não aproveitável _102_ha</td></tr><tr><td style="text-align: center;"><img src="legend/area_livre_INCRA_2024_771_ha_5_dúvida46ha2.png" /></td><td>dúvida_46_ha</td></tr></table>', layer: layer_area_livre_INCRA_2024_771_ha_5},
             {label: '<img src="legend/curvas_nivel_10m_alos_palsar_4.png" /> curvas_nivel_10m_alos_palsar', layer: layer_curvas_nivel_10m_alos_palsar_4},
             {label: '<img src="legend/hidrografia_3.png" /> hidrografia', layer: layer_hidrografia_3},
             {label: '<img src="legend/pa_contestado_2000_2.png" /> pa_contestado_2000', layer: layer_pa_contestado_2000_2},
-            {label: '<img src="legend/rl_proposta_2025_1.png" /> rl_proposta_2025', layer: layer_rl_proposta_2025_1},
+            {label: '<img src="legend/rl_proporsta_915_ha_1.png" /> rl_proporsta_915_ha', layer: layer_rl_proporsta_915_ha_1},
             {label: '<img src="legend/limite_0.png" /> limite', layer: layer_limite_0},]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
@@ -622,15 +622,15 @@
         });
         lay.addTo(map);
         setBounds();
-        resetLabels([layer_area_livre_incra_2024_5]);
+        resetLabels([layer_area_livre_INCRA_2024_771_ha_5]);
         map.on("zoomend", function(){
-            resetLabels([layer_area_livre_incra_2024_5]);
+            resetLabels([layer_area_livre_INCRA_2024_771_ha_5]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_area_livre_incra_2024_5]);
+            resetLabels([layer_area_livre_INCRA_2024_771_ha_5]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_area_livre_incra_2024_5]);
+            resetLabels([layer_area_livre_INCRA_2024_771_ha_5]);
         });
         </script>        
     </body>
