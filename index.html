@@ -38,16 +38,12 @@
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
         <script src="data/limite_0.js"></script>
-        <script src="data/solos_embrapa_1.js"></script>
-        <script src="data/hipsometroa_alos_palsar_2.js"></script>
-        <script src="data/Declividade_classes_3.js"></script>
-        <script src="data/uso_atual_incra_2024_4.js"></script>
-        <script src="data/pa_contestado_2000_5.js"></script>
-        <script src="data/rl_proposta_2025_6.js"></script>
-        <script src="data/area_livre_incra_2024_7.js"></script>
-        <script src="data/hidrografia_8.js"></script>
-        <script src="data/curvas_nivel_10m_alos_palsar_9.js"></script>
-        <script src="data/levantamento_de_campo_10.js"></script>
+        <script src="data/rl_proposta_2025_1.js"></script>
+        <script src="data/pa_contestado_2000_2.js"></script>
+        <script src="data/hidrografia_3.js"></script>
+        <script src="data/curvas_nivel_10m_alos_palsar_4.js"></script>
+        <script src="data/area_livre_incra_2024_5.js"></script>
+        <script src="data/levantamento_de_campo_6.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -66,7 +62,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[-25.660209026357883,-49.7798091635301],[-25.597746843595086,-49.66637864277875]]);
+        }).fitBounds([[-25.66379454092475,-49.82085730234368],[-25.5701196806006,-49.65074441724213]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -209,7 +205,7 @@
         });
         bounds_group.addLayer(layer_limite_0);
         map.addLayer(layer_limite_0);
-        function pop_solos_embrapa_1(feature, layer) {
+        function pop_rl_proposta_2025_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -222,105 +218,19 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ordem_1'] !== null ? autolinker.link(String(feature.properties['ordem_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(String(feature.properties['id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['sub_ordem_'] !== null ? autolinker.link(String(feature.properties['sub_ordem_']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_solos_embrapa_1_0(feature) {
-            switch(String(feature.properties['ordem_1'])) {
-                case 'ARGISSOLO':
-                    return {
-                pane: 'pane_solos_embrapa_1',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(206,184,127,1.0)',
-                interactive: false,
-            }
-                    break;
-                case 'CAMBISSOLO':
-                    return {
-                pane: 'pane_solos_embrapa_1',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(221,126,82,1.0)',
-                interactive: false,
-            }
-                    break;
-                case 'GLEISSOLO':
-                    return {
-                pane: 'pane_solos_embrapa_1',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(117,74,74,1.0)',
-                interactive: false,
-            }
-                    break;
-                case 'NEOSSOLO':
-                    return {
-                pane: 'pane_solos_embrapa_1',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(216,216,216,1.0)',
-                interactive: false,
-            }
-                    break;
-            }
-        }
-        map.createPane('pane_solos_embrapa_1');
-        map.getPane('pane_solos_embrapa_1').style.zIndex = 401;
-        map.getPane('pane_solos_embrapa_1').style['mix-blend-mode'] = 'normal';
-        var layer_solos_embrapa_1 = new L.geoJson(json_solos_embrapa_1, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_solos_embrapa_1',
-            layerName: 'layer_solos_embrapa_1',
-            pane: 'pane_solos_embrapa_1',
-            onEachFeature: pop_solos_embrapa_1,
-            style: style_solos_embrapa_1_0,
-        });
-        bounds_group.addLayer(layer_solos_embrapa_1);
-        function pop_hipsometroa_alos_palsar_2(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (var i in e.target._eventParents) {
-                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
-                            e.target._eventParents[i].resetStyle(e.target);
-                        }
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(String(feature.properties['ID']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ELEV_MIN'] !== null ? autolinker.link(String(feature.properties['ELEV_MIN']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ELEV_MAX'] !== null ? autolinker.link(String(feature.properties['ELEV_MAX']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['uso'] !== null ? autolinker.link(String(feature.properties['uso']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['area_ha'] !== null ? autolinker.link(String(feature.properties['area_ha']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['area_per'] !== null ? autolinker.link(String(feature.properties['area_per']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['legenda'] !== null ? autolinker.link(String(feature.properties['legenda']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['area_%'] !== null ? autolinker.link(String(feature.properties['area_%']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -330,322 +240,36 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_hipsometroa_alos_palsar_2_0(feature) {
-            if (feature.properties['ELEV_MAX'] >= 860.000000 && feature.properties['ELEV_MAX'] <= 875.000000 ) {
-                return {
-                pane: 'pane_hipsometroa_alos_palsar_2',
-                stroke: false, 
+        function style_rl_proposta_2025_1_0() {
+            return {
+                pane: 'pane_rl_proposta_2025_1',
+                opacity: 1,
+                color: 'rgba(35,96,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(43,131,186,1.0)',
+                fillColor: 'rgba(50,122,28,0.41568627450980394)',
                 interactive: false,
-            }
-            }
-            if (feature.properties['ELEV_MAX'] >= 875.000000 && feature.properties['ELEV_MAX'] <= 890.000000 ) {
-                return {
-                pane: 'pane_hipsometroa_alos_palsar_2',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(116,182,173,1.0)',
-                interactive: false,
-            }
-            }
-            if (feature.properties['ELEV_MAX'] >= 890.000000 && feature.properties['ELEV_MAX'] <= 905.000000 ) {
-                return {
-                pane: 'pane_hipsometroa_alos_palsar_2',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(183,226,168,1.0)',
-                interactive: false,
-            }
-            }
-            if (feature.properties['ELEV_MAX'] >= 905.000000 && feature.properties['ELEV_MAX'] <= 920.000000 ) {
-                return {
-                pane: 'pane_hipsometroa_alos_palsar_2',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(231,245,183,1.0)',
-                interactive: false,
-            }
-            }
-            if (feature.properties['ELEV_MAX'] >= 920.000000 && feature.properties['ELEV_MAX'] <= 935.000000 ) {
-                return {
-                pane: 'pane_hipsometroa_alos_palsar_2',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(254,232,164,1.0)',
-                interactive: false,
-            }
-            }
-            if (feature.properties['ELEV_MAX'] >= 935.000000 && feature.properties['ELEV_MAX'] <= 950.000000 ) {
-                return {
-                pane: 'pane_hipsometroa_alos_palsar_2',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(253,186,110,1.0)',
-                interactive: false,
-            }
-            }
-            if (feature.properties['ELEV_MAX'] >= 950.000000 && feature.properties['ELEV_MAX'] <= 965.000000 ) {
-                return {
-                pane: 'pane_hipsometroa_alos_palsar_2',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(241,129,76,1.0)',
-                interactive: false,
-            }
-            }
-            if (feature.properties['ELEV_MAX'] >= 965.000000 && feature.properties['ELEV_MAX'] <= 980.000000 ) {
-                return {
-                pane: 'pane_hipsometroa_alos_palsar_2',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(226,69,48,1.0)',
-                interactive: false,
-            }
             }
         }
-        map.createPane('pane_hipsometroa_alos_palsar_2');
-        map.getPane('pane_hipsometroa_alos_palsar_2').style.zIndex = 402;
-        map.getPane('pane_hipsometroa_alos_palsar_2').style['mix-blend-mode'] = 'normal';
-        var layer_hipsometroa_alos_palsar_2 = new L.geoJson(json_hipsometroa_alos_palsar_2, {
+        map.createPane('pane_rl_proposta_2025_1');
+        map.getPane('pane_rl_proposta_2025_1').style.zIndex = 401;
+        map.getPane('pane_rl_proposta_2025_1').style['mix-blend-mode'] = 'normal';
+        var layer_rl_proposta_2025_1 = new L.geoJson(json_rl_proposta_2025_1, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_hipsometroa_alos_palsar_2',
-            layerName: 'layer_hipsometroa_alos_palsar_2',
-            pane: 'pane_hipsometroa_alos_palsar_2',
-            onEachFeature: pop_hipsometroa_alos_palsar_2,
-            style: style_hipsometroa_alos_palsar_2_0,
+            dataVar: 'json_rl_proposta_2025_1',
+            layerName: 'layer_rl_proposta_2025_1',
+            pane: 'pane_rl_proposta_2025_1',
+            onEachFeature: pop_rl_proposta_2025_1,
+            style: style_rl_proposta_2025_1_0,
         });
-        bounds_group.addLayer(layer_hipsometroa_alos_palsar_2);
-        function pop_Declividade_classes_3(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (var i in e.target._eventParents) {
-                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
-                            e.target._eventParents[i].resetStyle(e.target);
-                        }
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">classe</th>\
-                        <td class="visible-with-data" id="classe">' + (feature.properties['classe'] !== null ? autolinker.link(String(feature.properties['classe']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_Declividade_classes_3_0(feature) {
-            switch(String(feature.properties['classe'])) {
-                case '<= 2 plano':
-                    return {
-                pane: 'pane_Declividade_classes_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(43,131,186,1.0)',
-                interactive: false,
-            }
-                    break;
-                case '2 - 5 suave ondulado':
-                    return {
-                pane: 'pane_Declividade_classes_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(145,203,168,1.0)',
-                interactive: false,
-            }
-                    break;
-                case '5 - 10 ondulado':
-                    return {
-                pane: 'pane_Declividade_classes_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(221,241,180,1.0)',
-                interactive: false,
-            }
-                    break;
-                case '10 - 15 moderadamente ondulado':
-                    return {
-                pane: 'pane_Declividade_classes_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(254,223,153,1.0)',
-                interactive: false,
-            }
-                    break;
-                case '15 - 45 forte ondulado':
-                    return {
-                pane: 'pane_Declividade_classes_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(245,144,83,1.0)',
-                interactive: false,
-            }
-                    break;
-                case '45 - 70 montanhoso':
-                    return {
-                pane: 'pane_Declividade_classes_3',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(215,25,28,1.0)',
-                interactive: false,
-            }
-                    break;
-            }
-        }
-        map.createPane('pane_Declividade_classes_3');
-        map.getPane('pane_Declividade_classes_3').style.zIndex = 403;
-        map.getPane('pane_Declividade_classes_3').style['mix-blend-mode'] = 'normal';
-        var layer_Declividade_classes_3 = new L.geoJson(json_Declividade_classes_3, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_Declividade_classes_3',
-            layerName: 'layer_Declividade_classes_3',
-            pane: 'pane_Declividade_classes_3',
-            onEachFeature: pop_Declividade_classes_3,
-            style: style_Declividade_classes_3_0,
-        });
-        bounds_group.addLayer(layer_Declividade_classes_3);
-        function pop_uso_atual_incra_2024_4(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (var i in e.target._eventParents) {
-                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
-                            e.target._eventParents[i].resetStyle(e.target);
-                        }
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">area_ha</th>\
-                        <td>' + (feature.properties['area_ha'] !== null ? autolinker.link(String(feature.properties['area_ha']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">area_%</th>\
-                        <td>' + (feature.properties['area_%'] !== null ? autolinker.link(String(feature.properties['area_%']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['leg_mapa'] !== null ? autolinker.link(String(feature.properties['leg_mapa']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_uso_atual_incra_2024_4_0(feature) {
-            switch(String(feature.properties['uso'])) {
-                case 'APP degradada':
-                    return {
-                pane: 'pane_uso_atual_incra_2024_4',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(154,205,174,1.0)',
-                interactive: false,
-            }
-                    break;
-                case 'APP preservada':
-                    return {
-                pane: 'pane_uso_atual_incra_2024_4',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(76,207,113,1.0)',
-                interactive: false,
-            }
-                    break;
-                case 'Estradas e ferrovias':
-                    return {
-                pane: 'pane_uso_atual_incra_2024_4',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(169,169,169,1.0)',
-                interactive: false,
-            }
-                    break;
-                case 'Mosaico de usos (lavoura, pastagem, hortifruti, benfeitorias)':
-                    return {
-                pane: 'pane_uso_atual_incra_2024_4',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,247,181,1.0)',
-                interactive: false,
-            }
-                    break;
-                case 'Silvicultura':
-                    return {
-                pane: 'pane_uso_atual_incra_2024_4',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(151,86,0,1.0)',
-                interactive: false,
-            }
-                    break;
-                case 'Vegetação nativa':
-                    return {
-                pane: 'pane_uso_atual_incra_2024_4',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(85,113,55,1.0)',
-                interactive: false,
-            }
-                    break;
-                case 'Vegetação nativa desmatada após junho de 2008':
-                    return {
-                pane: 'pane_uso_atual_incra_2024_4',
-                stroke: false, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(51,112,64,1.0)',
-                interactive: false,
-            }
-                    break;
-            }
-        }
-        map.createPane('pane_uso_atual_incra_2024_4');
-        map.getPane('pane_uso_atual_incra_2024_4').style.zIndex = 404;
-        map.getPane('pane_uso_atual_incra_2024_4').style['mix-blend-mode'] = 'normal';
-        var layer_uso_atual_incra_2024_4 = new L.geoJson(json_uso_atual_incra_2024_4, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_uso_atual_incra_2024_4',
-            layerName: 'layer_uso_atual_incra_2024_4',
-            pane: 'pane_uso_atual_incra_2024_4',
-            onEachFeature: pop_uso_atual_incra_2024_4,
-            style: style_uso_atual_incra_2024_4_0,
-        });
-        bounds_group.addLayer(layer_uso_atual_incra_2024_4);
-        map.addLayer(layer_uso_atual_incra_2024_4);
-        function pop_pa_contestado_2000_5(feature, layer) {
+        bounds_group.addLayer(layer_rl_proposta_2025_1);
+        map.addLayer(layer_rl_proposta_2025_1);
+        function pop_pa_contestado_2000_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -686,9 +310,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_pa_contestado_2000_5_0() {
+        function style_pa_contestado_2000_2_0() {
             return {
-                pane: 'pane_pa_contestado_2000_5',
+                pane: 'pane_pa_contestado_2000_2',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -699,138 +323,21 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_pa_contestado_2000_5');
-        map.getPane('pane_pa_contestado_2000_5').style.zIndex = 405;
-        map.getPane('pane_pa_contestado_2000_5').style['mix-blend-mode'] = 'normal';
-        var layer_pa_contestado_2000_5 = new L.geoJson(json_pa_contestado_2000_5, {
+        map.createPane('pane_pa_contestado_2000_2');
+        map.getPane('pane_pa_contestado_2000_2').style.zIndex = 402;
+        map.getPane('pane_pa_contestado_2000_2').style['mix-blend-mode'] = 'normal';
+        var layer_pa_contestado_2000_2 = new L.geoJson(json_pa_contestado_2000_2, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_pa_contestado_2000_5',
-            layerName: 'layer_pa_contestado_2000_5',
-            pane: 'pane_pa_contestado_2000_5',
-            onEachFeature: pop_pa_contestado_2000_5,
-            style: style_pa_contestado_2000_5_0,
+            dataVar: 'json_pa_contestado_2000_2',
+            layerName: 'layer_pa_contestado_2000_2',
+            pane: 'pane_pa_contestado_2000_2',
+            onEachFeature: pop_pa_contestado_2000_2,
+            style: style_pa_contestado_2000_2_0,
         });
-        bounds_group.addLayer(layer_pa_contestado_2000_5);
-        map.addLayer(layer_pa_contestado_2000_5);
-        function pop_rl_proposta_2025_6(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (var i in e.target._eventParents) {
-                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
-                            e.target._eventParents[i].resetStyle(e.target);
-                        }
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(String(feature.properties['id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['uso'] !== null ? autolinker.link(String(feature.properties['uso']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['area_ha'] !== null ? autolinker.link(String(feature.properties['area_ha']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['legenda'] !== null ? autolinker.link(String(feature.properties['legenda']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['area_%'] !== null ? autolinker.link(String(feature.properties['area_%']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_rl_proposta_2025_6_0() {
-            return {
-                pane: 'pane_rl_proposta_2025_6',
-                opacity: 1,
-                color: 'rgba(35,96,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(50,122,28,0.41568627450980394)',
-                interactive: false,
-            }
-        }
-        map.createPane('pane_rl_proposta_2025_6');
-        map.getPane('pane_rl_proposta_2025_6').style.zIndex = 406;
-        map.getPane('pane_rl_proposta_2025_6').style['mix-blend-mode'] = 'normal';
-        var layer_rl_proposta_2025_6 = new L.geoJson(json_rl_proposta_2025_6, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_rl_proposta_2025_6',
-            layerName: 'layer_rl_proposta_2025_6',
-            pane: 'pane_rl_proposta_2025_6',
-            onEachFeature: pop_rl_proposta_2025_6,
-            style: style_rl_proposta_2025_6_0,
-        });
-        bounds_group.addLayer(layer_rl_proposta_2025_6);
-        map.addLayer(layer_rl_proposta_2025_6);
-        function pop_area_livre_incra_2024_7(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (var i in e.target._eventParents) {
-                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
-                            e.target._eventParents[i].resetStyle(e.target);
-                        }
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">area_ha</th>\
-                        <td class="visible-with-data" id="area_ha">' + (feature.properties['area_ha'] !== null ? autolinker.link(String(feature.properties['area_ha']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_area_livre_incra_2024_7_0() {
-            return {
-                pane: 'pane_area_livre_incra_2024_7',
-                opacity: 1,
-                color: 'rgba(157,35,142,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(190,72,255,0.4117647058823529)',
-                interactive: true,
-            }
-        }
-        map.createPane('pane_area_livre_incra_2024_7');
-        map.getPane('pane_area_livre_incra_2024_7').style.zIndex = 407;
-        map.getPane('pane_area_livre_incra_2024_7').style['mix-blend-mode'] = 'normal';
-        var layer_area_livre_incra_2024_7 = new L.geoJson(json_area_livre_incra_2024_7, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_area_livre_incra_2024_7',
-            layerName: 'layer_area_livre_incra_2024_7',
-            pane: 'pane_area_livre_incra_2024_7',
-            onEachFeature: pop_area_livre_incra_2024_7,
-            style: style_area_livre_incra_2024_7_0,
-        });
-        bounds_group.addLayer(layer_area_livre_incra_2024_7);
-        map.addLayer(layer_area_livre_incra_2024_7);
-        function pop_hidrografia_8(feature, layer) {
+        bounds_group.addLayer(layer_pa_contestado_2000_2);
+        map.addLayer(layer_pa_contestado_2000_2);
+        function pop_hidrografia_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -865,9 +372,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_hidrografia_8_0() {
+        function style_hidrografia_3_0() {
             return {
-                pane: 'pane_hidrografia_8',
+                pane: 'pane_hidrografia_3',
                 opacity: 1,
                 color: 'rgba(100,152,210,1.0)',
                 dashArray: '',
@@ -878,21 +385,21 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_hidrografia_8');
-        map.getPane('pane_hidrografia_8').style.zIndex = 408;
-        map.getPane('pane_hidrografia_8').style['mix-blend-mode'] = 'normal';
-        var layer_hidrografia_8 = new L.geoJson(json_hidrografia_8, {
+        map.createPane('pane_hidrografia_3');
+        map.getPane('pane_hidrografia_3').style.zIndex = 403;
+        map.getPane('pane_hidrografia_3').style['mix-blend-mode'] = 'normal';
+        var layer_hidrografia_3 = new L.geoJson(json_hidrografia_3, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_hidrografia_8',
-            layerName: 'layer_hidrografia_8',
-            pane: 'pane_hidrografia_8',
-            onEachFeature: pop_hidrografia_8,
-            style: style_hidrografia_8_0,
+            dataVar: 'json_hidrografia_3',
+            layerName: 'layer_hidrografia_3',
+            pane: 'pane_hidrografia_3',
+            onEachFeature: pop_hidrografia_3,
+            style: style_hidrografia_3_0,
         });
-        bounds_group.addLayer(layer_hidrografia_8);
-        map.addLayer(layer_hidrografia_8);
-        function pop_curvas_nivel_10m_alos_palsar_9(feature, layer) {
+        bounds_group.addLayer(layer_hidrografia_3);
+        map.addLayer(layer_hidrografia_3);
+        function pop_curvas_nivel_10m_alos_palsar_4(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -918,9 +425,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_curvas_nivel_10m_alos_palsar_9_0() {
+        function style_curvas_nivel_10m_alos_palsar_4_0() {
             return {
-                pane: 'pane_curvas_nivel_10m_alos_palsar_9',
+                pane: 'pane_curvas_nivel_10m_alos_palsar_4',
                 opacity: 1,
                 color: 'rgba(152,125,183,1.0)',
                 dashArray: '',
@@ -931,21 +438,111 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_curvas_nivel_10m_alos_palsar_9');
-        map.getPane('pane_curvas_nivel_10m_alos_palsar_9').style.zIndex = 409;
-        map.getPane('pane_curvas_nivel_10m_alos_palsar_9').style['mix-blend-mode'] = 'normal';
-        var layer_curvas_nivel_10m_alos_palsar_9 = new L.geoJson(json_curvas_nivel_10m_alos_palsar_9, {
+        map.createPane('pane_curvas_nivel_10m_alos_palsar_4');
+        map.getPane('pane_curvas_nivel_10m_alos_palsar_4').style.zIndex = 404;
+        map.getPane('pane_curvas_nivel_10m_alos_palsar_4').style['mix-blend-mode'] = 'normal';
+        var layer_curvas_nivel_10m_alos_palsar_4 = new L.geoJson(json_curvas_nivel_10m_alos_palsar_4, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_curvas_nivel_10m_alos_palsar_9',
-            layerName: 'layer_curvas_nivel_10m_alos_palsar_9',
-            pane: 'pane_curvas_nivel_10m_alos_palsar_9',
-            onEachFeature: pop_curvas_nivel_10m_alos_palsar_9,
-            style: style_curvas_nivel_10m_alos_palsar_9_0,
+            dataVar: 'json_curvas_nivel_10m_alos_palsar_4',
+            layerName: 'layer_curvas_nivel_10m_alos_palsar_4',
+            pane: 'pane_curvas_nivel_10m_alos_palsar_4',
+            onEachFeature: pop_curvas_nivel_10m_alos_palsar_4,
+            style: style_curvas_nivel_10m_alos_palsar_4_0,
         });
-        bounds_group.addLayer(layer_curvas_nivel_10m_alos_palsar_9);
-        map.addLayer(layer_curvas_nivel_10m_alos_palsar_9);
-        function pop_levantamento_de_campo_10(feature, layer) {
+        bounds_group.addLayer(layer_curvas_nivel_10m_alos_palsar_4);
+        map.addLayer(layer_curvas_nivel_10m_alos_palsar_4);
+        function pop_area_livre_incra_2024_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">area_ha</th>\
+                        <td class="visible-with-data" id="area_ha">' + (feature.properties['area_ha'] !== null ? autolinker.link(String(feature.properties['area_ha']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['aproveitar'] !== null ? autolinker.link(String(feature.properties['aproveitar']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_area_livre_incra_2024_5_0(feature) {
+            switch(String(feature.properties['aproveitar'])) {
+                case 'aproveitável':
+                    return {
+                pane: 'pane_area_livre_incra_2024_5',
+                opacity: 1,
+                color: 'rgba(51,220,31,1.0)',
+                dashArray: '6.0,3.0',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(137,232,142,0.3803921568627451)',
+                interactive: true,
+            }
+                    break;
+                case 'não aproveitável':
+                    return {
+                pane: 'pane_area_livre_incra_2024_5',
+                opacity: 1,
+                color: 'rgba(234,33,58,1.0)',
+                dashArray: '6.0,3.0',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(244,111,120,0.43137254901960786)',
+                interactive: true,
+            }
+                    break;
+                case 'dúvida':
+                    return {
+                pane: 'pane_area_livre_incra_2024_5',
+                opacity: 1,
+                color: 'rgba(244,131,53,1.0)',
+                dashArray: '6.0,3.0',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(225,204,26,0.3254901960784314)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_area_livre_incra_2024_5');
+        map.getPane('pane_area_livre_incra_2024_5').style.zIndex = 405;
+        map.getPane('pane_area_livre_incra_2024_5').style['mix-blend-mode'] = 'normal';
+        var layer_area_livre_incra_2024_5 = new L.geoJson(json_area_livre_incra_2024_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_area_livre_incra_2024_5',
+            layerName: 'layer_area_livre_incra_2024_5',
+            pane: 'pane_area_livre_incra_2024_5',
+            onEachFeature: pop_area_livre_incra_2024_5,
+            style: style_area_livre_incra_2024_5_0,
+        });
+        bounds_group.addLayer(layer_area_livre_incra_2024_5);
+        map.addLayer(layer_area_livre_incra_2024_5);
+        function pop_levantamento_de_campo_6(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -974,49 +571,45 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_levantamento_de_campo_10_0() {
+        function style_levantamento_de_campo_6_0() {
             return {
-                pane: 'pane_levantamento_de_campo_10',
+                pane: 'pane_levantamento_de_campo_6',
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/levantamento_de_campo_10.svg',
-            iconSize: [40.65999999999998, 40.65999999999998]
+            iconUrl: 'markers/levantamento_de_campo_6.svg',
+            iconSize: [40.66, 40.66]
         }),
                 interactive: true,
             }
         }
-        map.createPane('pane_levantamento_de_campo_10');
-        map.getPane('pane_levantamento_de_campo_10').style.zIndex = 410;
-        map.getPane('pane_levantamento_de_campo_10').style['mix-blend-mode'] = 'normal';
-        var layer_levantamento_de_campo_10 = new L.geoJson(json_levantamento_de_campo_10, {
+        map.createPane('pane_levantamento_de_campo_6');
+        map.getPane('pane_levantamento_de_campo_6').style.zIndex = 406;
+        map.getPane('pane_levantamento_de_campo_6').style['mix-blend-mode'] = 'normal';
+        var layer_levantamento_de_campo_6 = new L.geoJson(json_levantamento_de_campo_6, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_levantamento_de_campo_10',
-            layerName: 'layer_levantamento_de_campo_10',
-            pane: 'pane_levantamento_de_campo_10',
-            onEachFeature: pop_levantamento_de_campo_10,
+            dataVar: 'json_levantamento_de_campo_6',
+            layerName: 'layer_levantamento_de_campo_6',
+            pane: 'pane_levantamento_de_campo_6',
+            onEachFeature: pop_levantamento_de_campo_6,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.marker(latlng, style_levantamento_de_campo_10_0(feature));
+                return L.marker(latlng, style_levantamento_de_campo_6_0(feature));
             },
         });
-        bounds_group.addLayer(layer_levantamento_de_campo_10);
-        map.addLayer(layer_levantamento_de_campo_10);
+        bounds_group.addLayer(layer_levantamento_de_campo_6);
+        map.addLayer(layer_levantamento_de_campo_6);
         var overlaysTree = [
-            {label: '<img src="legend/levantamento_de_campo_10.png" /> levantamento_de_campo', layer: layer_levantamento_de_campo_10},
-            {label: '<img src="legend/curvas_nivel_10m_alos_palsar_9.png" /> curvas_nivel_10m_alos_palsar', layer: layer_curvas_nivel_10m_alos_palsar_9},
-            {label: '<img src="legend/hidrografia_8.png" /> hidrografia', layer: layer_hidrografia_8},
-            {label: '<img src="legend/area_livre_incra_2024_7.png" /> area_livre_incra_2024', layer: layer_area_livre_incra_2024_7},
-            {label: '<img src="legend/rl_proposta_2025_6.png" /> rl_proposta_2025', layer: layer_rl_proposta_2025_6},
-            {label: '<img src="legend/pa_contestado_2000_5.png" /> pa_contestado_2000', layer: layer_pa_contestado_2000_5},
-            {label: 'uso_atual_incra_2024<br /><table><tr><td style="text-align: center;"><img src="legend/uso_atual_incra_2024_4_APPdegradada0.png" /></td><td>APP degradada</td></tr><tr><td style="text-align: center;"><img src="legend/uso_atual_incra_2024_4_APPpreservada1.png" /></td><td>APP preservada</td></tr><tr><td style="text-align: center;"><img src="legend/uso_atual_incra_2024_4_Estradaseferrovias2.png" /></td><td>Estradas e ferrovias</td></tr><tr><td style="text-align: center;"><img src="legend/uso_atual_incra_2024_4_Mosaicodeusoslavourapastagemhortifrutibenfeitorias3.png" /></td><td>Mosaico de usos (lavoura, pastagem, hortifruti, benfeitorias)</td></tr><tr><td style="text-align: center;"><img src="legend/uso_atual_incra_2024_4_Silvicultura4.png" /></td><td>Silvicultura</td></tr><tr><td style="text-align: center;"><img src="legend/uso_atual_incra_2024_4_Vegetaçãonativa5.png" /></td><td>Vegetação nativa</td></tr><tr><td style="text-align: center;"><img src="legend/uso_atual_incra_2024_4_Vegetaçãonativadesmatadaapósjunhode20086.png" /></td><td>Vegetação nativa desmatada após junho de 2008</td></tr></table>', layer: layer_uso_atual_incra_2024_4},
-            {label: 'Declividade_classes<br /><table><tr><td style="text-align: center;"><img src="legend/Declividade_classes_3_2plano0.png" /></td><td><= 2 plano</td></tr><tr><td style="text-align: center;"><img src="legend/Declividade_classes_3_25suaveondulado1.png" /></td><td>2 - 5 suave ondulado</td></tr><tr><td style="text-align: center;"><img src="legend/Declividade_classes_3_510ondulado2.png" /></td><td>5 - 10 ondulado</td></tr><tr><td style="text-align: center;"><img src="legend/Declividade_classes_3_1015moderadamenteondulado3.png" /></td><td>10 - 15 moderadamente ondulado</td></tr><tr><td style="text-align: center;"><img src="legend/Declividade_classes_3_1545forteondulado4.png" /></td><td>15 - 45 forte ondulado</td></tr><tr><td style="text-align: center;"><img src="legend/Declividade_classes_3_4570montanhoso5.png" /></td><td>45 - 70 montanhoso</td></tr></table>', layer: layer_Declividade_classes_3},
-            {label: 'hipsometroa_alos_palsar<br /><table><tr><td style="text-align: center;"><img src="legend/hipsometroa_alos_palsar_2_8608750.png" /></td><td>860 - 875</td></tr><tr><td style="text-align: center;"><img src="legend/hipsometroa_alos_palsar_2_8758901.png" /></td><td>875 - 890</td></tr><tr><td style="text-align: center;"><img src="legend/hipsometroa_alos_palsar_2_8909052.png" /></td><td>890 - 905</td></tr><tr><td style="text-align: center;"><img src="legend/hipsometroa_alos_palsar_2_9059203.png" /></td><td>905 - 920</td></tr><tr><td style="text-align: center;"><img src="legend/hipsometroa_alos_palsar_2_9209354.png" /></td><td>920 - 935</td></tr><tr><td style="text-align: center;"><img src="legend/hipsometroa_alos_palsar_2_9359505.png" /></td><td>935 - 950</td></tr><tr><td style="text-align: center;"><img src="legend/hipsometroa_alos_palsar_2_9509656.png" /></td><td>950 - 965</td></tr><tr><td style="text-align: center;"><img src="legend/hipsometroa_alos_palsar_2_9659807.png" /></td><td>965 - 980</td></tr></table>', layer: layer_hipsometroa_alos_palsar_2},
-            {label: 'solos_embrapa<br /><table><tr><td style="text-align: center;"><img src="legend/solos_embrapa_1_ARGISSOLO0.png" /></td><td>ARGISSOLO</td></tr><tr><td style="text-align: center;"><img src="legend/solos_embrapa_1_CAMBISSOLO1.png" /></td><td>CAMBISSOLO</td></tr><tr><td style="text-align: center;"><img src="legend/solos_embrapa_1_GLEISSOLO2.png" /></td><td>GLEISSOLO</td></tr><tr><td style="text-align: center;"><img src="legend/solos_embrapa_1_NEOSSOLO3.png" /></td><td>NEOSSOLO</td></tr></table>', layer: layer_solos_embrapa_1},
+            {label: '<img src="legend/levantamento_de_campo_6.png" /> levantamento_de_campo', layer: layer_levantamento_de_campo_6},
+            {label: 'area_livre_incra_2024<br /><table><tr><td style="text-align: center;"><img src="legend/area_livre_incra_2024_5_aproveitável0.png" /></td><td>aproveitável</td></tr><tr><td style="text-align: center;"><img src="legend/area_livre_incra_2024_5_nãoaproveitável1.png" /></td><td>não aproveitável</td></tr><tr><td style="text-align: center;"><img src="legend/area_livre_incra_2024_5_dúvida2.png" /></td><td>dúvida</td></tr></table>', layer: layer_area_livre_incra_2024_5},
+            {label: '<img src="legend/curvas_nivel_10m_alos_palsar_4.png" /> curvas_nivel_10m_alos_palsar', layer: layer_curvas_nivel_10m_alos_palsar_4},
+            {label: '<img src="legend/hidrografia_3.png" /> hidrografia', layer: layer_hidrografia_3},
+            {label: '<img src="legend/pa_contestado_2000_2.png" /> pa_contestado_2000', layer: layer_pa_contestado_2000_2},
+            {label: '<img src="legend/rl_proposta_2025_1.png" /> rl_proposta_2025', layer: layer_rl_proposta_2025_1},
             {label: '<img src="legend/limite_0.png" /> limite', layer: layer_limite_0},]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
@@ -1029,6 +622,16 @@
         });
         lay.addTo(map);
         setBounds();
+        resetLabels([layer_area_livre_incra_2024_5]);
+        map.on("zoomend", function(){
+            resetLabels([layer_area_livre_incra_2024_5]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_area_livre_incra_2024_5]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_area_livre_incra_2024_5]);
+        });
         </script>        
     </body>
 </html>
